@@ -1,0 +1,26 @@
+###
+GET http://localhost:3000/pets
+
+###
+GET http://localhost:3000/pets/1
+
+###
+GET http://localhost:3000/pets/0
+
+###
+GET http://localhost:3000/pets/5
+
+###
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/boom
+
+###
+GET http://localhost:3000/blah
+
+###
+GET http://localhost:3000/pets/-1
+
+# ###
+# POST http://localhost:3000/pets age=2 kind=cat name=tom
