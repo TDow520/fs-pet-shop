@@ -106,3 +106,108 @@ const server = http.createServer(handleRequest)
 server.listen(port, function(){
     console.log("Listening on port", port)
 })
+
+
+// //ChatGPT Refactored version
+// const fs = require('fs');
+// const http = require('http');
+
+// const port = 8000;
+// const petRegExp = /^\/pets\/(.*)$/;
+
+// function handleGetPets(req, res) {
+//   fs.readFile('pets.json', 'utf8', (error, data) => {
+//     if (error) {
+//       console.error(error);
+//       res.statusCode = 500;
+//       res.end();
+//       return;
+//     }
+    
+//     let pets = JSON.parse(data);
+//     let responseJson;
+    
+//     if (req.url === '/pets') {
+//       responseJson = pets;
+//     } else {
+//       let index = Number(req.url.match(petRegExp)[1]);
+//       if (index < 0 || index >= pets.length || !Number.isFinite(index)) {
+//         res.statusCode = 404;
+//         res.end('Not found');
+//         return;
+//       }
+//       responseJson = pets[index];
+//     }
+    
+//     res.setHeader('Content-Type', 'application/json');
+//     res.statusCode = 200;
+//     res.end(JSON.stringify(responseJson));
+//   });
+// }
+
+// function handlePostPet(req, res) {
+//   let body = '';
+
+//   req.on('data', chunk => {
+//     body += chunk.toString();
+//   });
+
+//   req.on('end', () => {
+//     const data = JSON.parse(body);
+//     let age = Number(data['age']);
+//     let name = data['name'];
+//     let kind = data['kind'];
+    
+//     if (!age || !name || !kind || !Number.isFinite(age)) {
+//       res.statusCode = 400;
+//       res.end('Bad request');
+//       return;
+//     }
+    
+//     fs.readFile('pets.json', 'utf8', (error, data) => {
+//       if (error) {
+//         console.error(error);
+//         res.statusCode = 500;
+//         res.end();
+//         return;
+//       }
+    
+//       let pets = JSON.parse(data);
+//       let newPet = {
+//         age: age,
+//         name: name,
+//         kind: kind
+//       };
+//       pets.push(newPet);
+    
+//       fs.writeFile('pets.json', JSON.stringify(pets), error => {
+//         if (error) {
+//           console.error(error);
+//           res.statusCode = 500;
+//           res.end();
+//           return;
+//         }
+        
+//         res.statusCode = 200;
+//         res.end('Pet added');
+//       });
+//     });
+//   });
+// }
+
+// function handleRequest(req, res) {
+//   if (req.method === 'GET') {
+//     handleGetPets(req, res);
+//   } else if (req.method === 'POST' && req.url === '/pets') {
+//     handlePostPet(req, res);
+//   } else {
+//     res.statusCode = 404;
+//     res.end('Not found');
+//   }
+// }
+
+// const server = http.createServer(handleRequest);
+
+// server.listen(port, () => {
+//   console.log(`Listening on port ${port}`);
+// });
