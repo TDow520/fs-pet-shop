@@ -1,8 +1,8 @@
-###
+### get all pets
 GET http://localhost:3000/pets
 
-###
-GET http://localhost:3000/pets/1
+### get a pet
+GET http://localhost:3000/pets/6
 
 ###
 GET http://localhost:3000/pets/0
@@ -22,5 +22,35 @@ GET http://localhost:3000/blah
 ###
 GET http://localhost:3000/pets/-1
 
-# ###
-# POST http://localhost:3000/pets age=2 kind=cat name=tom
+### creates a new pet
+POST http://localhost:3000/pets
+Content-Type: application/json
+
+{
+    "kind": "cat",
+    "name": "Bruce",
+    "age": 3
+}
+
+### patch a pet
+PATCH http://localhost:3000/pets/1
+Content-Type: application/json
+
+{
+    
+    "name": "Job"
+    
+}
+
+### delete a pet
+DELETE http://localhost:3000/pets/19
+
+### put a pet
+PUT http://localhost:3000/pets/6
+Content-Type: application/json
+
+{
+    "name": "tom",
+    "kind": "cat",
+    "age": 2
+}
